@@ -1,0 +1,15 @@
+#display{
+    background:grey;
+    display:flex;
+    justify-content:end;
+
+    width:470px;
+    padding:10px;
+    margin-bottom:10px;
+}
+
+.numBtn,
+.opBtn{
+    width:25px;
+    height:auto;
+}
