@@ -18,10 +18,10 @@ function divide(a,b){
 function operate(op, num1, num2){
     num1 = Number(num1);
     num2 = Number(num2);
-    if(op === "+"){return add(num1,num2);}
-    if(op === "-"){return subtract(num1,num2);}
-    if(op === multSymbol){return multiply(num1,num2);}
-    if(op === divSymbol){return divide(num1,num2);}
+    if(op === "+"){return add(num1,num2).toFixed(3);}
+    if(op === "-"){return subtract(num1,num2).toFixed(3);}
+    if(op === multSymbol){return multiply(num1,num2).toFixed(3);}
+    if(op === divSymbol){return divide(num1,num2).toFixed(3);}
     else{return "ERROR";}
 }
 
