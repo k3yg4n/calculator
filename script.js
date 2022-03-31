@@ -18,47 +18,16 @@ function divide(a,b){
 function operate(op, num1, num2){
     num1 = Number(num1);
     num2 = Number(num2);
-    if(op === "+"){return add(num1,num2).toFixed(3);}
-    if(op === "-"){return subtract(num1,num2).toFixed(3);}
-    if(op === multSymbol){return multiply(num1,num2).toFixed(3);}
-    if(op === divSymbol){return divide(num1,num2).toFixed(3);}
+    if(op === "+"){return fixDec(add(num1,num2));}
+    if(op === "-"){return fixDec(subtract(num1,num2));}
+    if(op === multSymbol){return fixDec(multiply(num1,num2));}
+    if(op === divSymbol){return fixDec(divide(num1,num2));}
     else{return "ERROR";}
 }
 
-// Button Event Listener Function
-// function updateDisplay(e){
-//     console.log("updateDisplay was run");
-//     if(e.target.id === "clrBtn"){ // Clear button is pressed
-//         display.textContent = "";
-//     } else if (e.target.id === "eqBtn"){ // Equal button is pressed
-        
-//         if(display.textContent.includes("+")){
-//             op = "+";
-//         } else if (display.textContent.includes("-")){
-//             op = "-";
-//         } else if (display.textContent.includes(multSymbol)){
-//             op = multSymbol;
-//         } else if (display.textContent.includes(divSymbol)){
-//             op = divSymbol
-//         }
-
-//         [num1,num2] = display.textContent.split(op);
-
-//         display.textContent = operate(op, num1, num2);
-//     } else { // Numerical Button is pressed or Operator is pressed
-//         display.textContent += e.target.textContent;
-//     }
-// }
-
-// function updateVars(e){
-//     console.log("updateVars was run");
-//     const value = e.target.textContent;
-//     if(e.target.className === "numBtn"){
-//         (num1 === null ? num1 = value : num2 = value);
-//     } else { // An operator button has been pressed
-//         op = e.target.textContent;
-//     }
-// }
+function fixDec(value){ // This function rounds the result to 3 decimal places and removes the decimal if unnecessary
+    return value.toFixed(3).replace(/\.000/, "");
+}
 
 function updateDisplay(e){
     let textToDisplay = "";

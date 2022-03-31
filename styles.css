@@ -1,3 +1,7 @@
+html{
+    background-color:rgb(71, 70, 70);
+}
+
 #display{
     background:grey;
     display:flex;
