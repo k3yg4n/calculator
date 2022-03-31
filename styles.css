@@ -12,8 +12,18 @@ html{
     margin-bottom:10px;
 }
 
-.numBtn,
+/* .numBtn,
 .opBtn{
     width:25px;
     height:auto;
+} */
+
+#clrBtn{
+    width:150px;
+}
+
+button{
+    width:60px;
+    height:60px;
+    font-size:30px;
 }

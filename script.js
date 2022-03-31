@@ -58,12 +58,24 @@ function updateDisplay(e){
         }
 
     } else if(e.target.id === "eqBtn"){ // at this point we should have num1 and op
-        console.log("Equal button pressed.")
-        num2 = getAfterOp(display.textContent);
-        textToDisplay = operate(op, num1, num2);
-        num1 = textToDisplay;
-        op = null;
-        num2 = null;
+        // console.log("num1:" + num1);
+        // console.log("num2:" + num2);
+        // console.log("getAfterOp:" + getAfterOp(display.textContent));
+        if(num1 === null || op === null){ // if equal btn is pressed without all entries
+            console.log("num1 and num2 are null.")
+            textToDisplay = display.textContent;
+        } else if(getAfterOp(display.textContent) == ""){ // if num2 is missing
+            console.log("num2 has not been entered.")
+            textToDisplay = display.textContent;
+        } else {
+            console.log("perform regular calculation.") // otherwise perform operation as usual
+            num2 = getAfterOp(display.textContent);
+            textToDisplay = operate(op, num1, num2);
+            num1 = textToDisplay;
+            op = null;
+            num2 = null;
+        }
+
     } else { // if numerical btn is pressed
         textToDisplay = (display.textContent + e.target.textContent);
     }
