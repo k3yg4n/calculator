@@ -26,6 +26,7 @@ function operate(op, num1, num2){
     if(op === multSymbol){return fixDec(multiply(num1,num2));}
     if(op === divSymbol){
         let result = divide(num1, num2);
+        alert("You cannot divide by 0!")
         return result === null ? "ERROR" : fixDec(result); 
     }
     else{return "ERROR";}
@@ -37,8 +38,10 @@ function fixDec(value){ // This function rounds the result to 3 decimal places a
 
 function updateDisplay(e){
     let textToDisplay = "";
-
-    if(display.textContent === "ERROR"){
+    console.log("num1: " + num1);
+    console.log("num2: " + num2);
+    
+    if(display.textContent.includes("ERROR")){ 
         display.textContent = startDisplayVal;
         num1 = null;
         num2 = null;
@@ -100,6 +103,7 @@ function updateDisplay(e){
         }
 
     } else if(e.target.id === "decBtn"){ // if decimal btn is pressed
+       
         if(display.textContent.charAt(display.textContent.length - 1) === "."){
             return;
         }
@@ -107,6 +111,17 @@ function updateDisplay(e){
             textToDisplay = "0.";
         } else {
             textToDisplay = display.textContent + ".";
+        }
+
+    } else if(e.target.id === "delBtn"){ // if delete btn is pressed
+        console.log("Delete button pressed.")
+        let finalChar = display.textContent.charAt(display.textContent.length - 1);
+        if(opArray.includes(finalChar)){
+            op = null;
+        } 
+        textToDisplay = display.textContent.slice(0,display.textContent.length - 1);
+        if(textToDisplay === ""){
+            textToDisplay = "0";
         }
     } else { // if numerical btn is pressed
         if(display.textContent === "0"){
@@ -127,7 +142,7 @@ function getBeforeOp(displayText){
     return displayText.split(String(op))[0];
 }
 
-///// MAIN /////
+///// MAIN ///// 
 
 // Initialize the display
 const display = document.querySelector('#display');
@@ -138,8 +153,6 @@ display.textContent = startDisplayVal;
 
 // Buttons
 const buttons = document.querySelectorAll('button');
-const opButtons = document.querySelectorAll('.opbtn');
-const numButtons = document.querySelectorAll('.numBtn')
 
 for(let btn of buttons){
     btn.addEventListener('click',updateDisplay);

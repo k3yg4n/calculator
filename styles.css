@@ -18,8 +18,9 @@ html{
     height:auto;
 } */
 
-#clrBtn{
-    width:150px;
+#clrBtn,
+#delBtn{
+    width:100px;
 }
 
 button{
