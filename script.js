@@ -26,8 +26,12 @@ function operate(op, num1, num2){
     if(op === multSymbol){return fixDec(multiply(num1,num2));}
     if(op === divSymbol){
         let result = divide(num1, num2);
-        alert("You cannot divide by 0!")
-        return result === null ? "ERROR" : fixDec(result); 
+        if(result === null) {
+            alert("You cannot divide by 0!")
+            return "ERROR";
+        } else {
+        return fixDec(result); 
+        }
     }
     else{return "ERROR";}
 }
@@ -38,9 +42,7 @@ function fixDec(value){ // This function rounds the result to 3 decimal places a
 
 function updateDisplay(e){
     let textToDisplay = "";
-    console.log("num1: " + num1);
-    console.log("num2: " + num2);
-    
+
     if(display.textContent.includes("ERROR")){ 
         display.textContent = startDisplayVal;
         num1 = null;
@@ -53,50 +55,37 @@ function updateDisplay(e){
         num1 = null;
         num2 = null;
         op = null;
-    } else if(e.target.className === "opBtn"){ // if operator button is pressed
-        let currOp = e.target.textContent;
-        let lastDisplayChar = display.textContent.charAt(display.textContent.length - 1);
-        
-        if(lastDisplayChar === currOp){
-            return;
-        } else if(opArray.includes(lastDisplayChar)){
-            display.textContent = (display.textContent.slice(0,-1)) + currOp;
-            op = currOp;
-            return;
-        }
-        
-        if(num1 === null){ // the first value has not been received
-            console.log("FIRST VALUE WAS JUST RECEIVED!")
-            num1 = display.textContent;
-            op = currOp;
-            textToDisplay = num1 + op;
-        } else if(num2 === null && op !== null) {// the second value is displayed but not read yet
-            console.log("SECOND VALUE WAS JUST RECEIVED!")
-            num2 = getAfterOp(display.textContent);
-            textToDisplay = operate(op,num1,num2) + currOp;
 
-            num1 = operate(op,num1,num2);
-            op = currOp;
+    } else if(e.target.className === "opBtn"){ // if operator button is pressed
+        newOp = e.target.textContent;
+
+        if(op === null){ // Pressed after num1
+            console.log("Case1")
+            op = newOp;
+            num1 = display.textContent;
+            textToDisplay = num1;
+        } else if(num1 !== null && op !== null && display.textContent === num1) { // We are changing the op
+            console.log("We are changing operation.")
+            op = newOp;
+            textToDisplay = num1;
+        } else if(num1 !== null && op !== null) { // Pressed to evaluate prev expression 
+            console.log("Case2")
+            num2 = display.textContent;
+            textToDisplay = operate(op,num1,num2);
+            num1 = textToDisplay;
             num2 = null;
-        } else if(num2 === null && op === null) { // num2 and op are unknown (after using equal button)
-            console.log("OP BUTTON PRESSED AFTER EQUAL BUTTON")
-            num1 = getBeforeOp(display.textContent);
-            op = currOp;
-            textToDisplay = display.textContent + op;
+            op = newOp;
         }
 
     } else if(e.target.id === "eqBtn"){ // if eq btn is pressed
-        // at this point we should have num1 and op
-        if(num1 === null || op === null){ // if equal btn is pressed without all entries
-            //console.log("num1 and num2 are null.")
-            textToDisplay = display.textContent;
-        } else if(getAfterOp(display.textContent) == ""){ // if num2 is missing
-            //console.log("num2 has not been entered.")
-            textToDisplay = display.textContent;
+        if(num1 === null || op === null){ //  if equal btn is pressed without all entries
+            console.log("not all entries have not been entered.")
+            return;
         } else { // otherwise perform operation as usual
-            //console.log("perform regular calculation.") 
-            num2 = getAfterOp(display.textContent);
+            console.log("perform regular calculation.") 
+            num2 = display.textContent;
             textToDisplay = operate(op, num1, num2);
+            
             num1 = textToDisplay;
             op = null;
             num2 = null;
@@ -104,43 +93,50 @@ function updateDisplay(e){
 
     } else if(e.target.id === "decBtn"){ // if decimal btn is pressed
        
-        if(display.textContent.charAt(display.textContent.length - 1) === "."){
+        if(display.textContent.includes(".")){
             return;
-        }
-        if(display.textContent == "0"){
-            textToDisplay = "0.";
         } else {
             textToDisplay = display.textContent + ".";
         }
 
     } else if(e.target.id === "delBtn"){ // if delete btn is pressed
         console.log("Delete button pressed.")
-        let finalChar = display.textContent.charAt(display.textContent.length - 1);
+        let lenDisplay = display.textContent.length;
+        finalChar = display.textContent.charAt(lenDisplay - 1);
+
         if(opArray.includes(finalChar)){
             op = null;
         } 
+
         textToDisplay = display.textContent.slice(0,display.textContent.length - 1);
+        
         if(textToDisplay === ""){
-            textToDisplay = "0";
+            textToDisplay = startDisplayVal;
+            num1 = null;
+            num2 = null;
+            op = null;
         }
+
     } else { // if numerical btn is pressed
+        console.log("numerical button pressed.");
         if(display.textContent === "0"){
+            console.log(1);
             textToDisplay = e.target.textContent;
+        }else if(display.textContent.charAt(display.textContent.length - 1) === "."){
+            console.log(2);
+            textToDisplay = display.textContent + e.target.textContent;
+        }else if( (num1 !== null && op !== null && num2 === null) || (num1 !== null && op === null && num2 === null) ){ // op is known so begin displaying num2
+            textToDisplay = e.target.textContent;
+            console.log(3);
         } else {
-        textToDisplay = (display.textContent + e.target.textContent);
+            textToDisplay = (display.textContent + e.target.textContent);
+            console.log(4);
         }
     }
     
     display.textContent = textToDisplay;
 }
 
-function getAfterOp(displayText){
-    return displayText.split(String(op))[1];
-}
-
-function getBeforeOp(displayText){
-    return displayText.split(String(op))[0];
-}
 
 ///// MAIN ///// 
 
