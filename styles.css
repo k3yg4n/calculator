@@ -57,6 +57,14 @@ button{
     font-size:20px;
 }
 
+button:hover{
+    filter:brightness(85%);
+}
+
+button:active{
+    filter:brightness(60%)
+}
+
 #actionBtns{
     width:80%;
     display:flex;
