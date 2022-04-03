@@ -10,25 +10,51 @@
 </head>
 
 <body>
-    <div id="display"></div>
-    <button class="numBtn">1</button>
-    <button class="numBtn">2</button>
-    <button class="numBtn">3</button>
-    <button class="numBtn">4</button>
-    <button class="numBtn">5</button>
-    <button class="numBtn">6</button>
-    <button class="numBtn">7</button>
-    <button class="numBtn">8</button>
-    <button class="numBtn">9</button>
-    <button class="numBtn">0</button>
-    <button class="opBtn">+</button>
-    <button class="opBtn">-</button>
-    <button class="opBtn">&times</button>
-    <button class="opBtn">&divide</button>
-    <button id="decBtn">.</button>
-    <button id="eqBtn">=</button>
-    <button id="clrBtn">CLR</button>
-    <button id="delBtn">DEL</button>
+    <img id='calcTop' src="./images/froggie.png">
+    <div id="calculator">
+        <div id="display"></div>
+
+        <div id="actionBtns">
+            <button id="clrBtn" class="actionBtn">CLR</button>
+            <button id="delBtn" class="actionBtn">DEL</button>
+        </div>
+
+        <div id="numAndOpBtns">
+            <button class="numBtn">7</button>
+            <button class="numBtn">8</button>
+            <button class="numBtn">9</button>
+            <button class="opBtn">&times</button>
+
+            <button class="numBtn">4</button>
+            <button class="numBtn">5</button>
+            <button class="numBtn">6</button>
+            <button class="opBtn">&divide</button>
+
+            <button class="numBtn">1</button>
+            <button class="numBtn">2</button>
+            <button class="numBtn">3</button>
+            <button class="opBtn">-</button>
+
+            <button id="decBtn">.</button>
+            <button class="numBtn">0</button>
+            <button id="eqBtn">=</button>
+            <button class="opBtn">+</button>
+        </div>
+
+    </div>
+
+    <footer class="footer">
+        <p>
+            Copyright &#169; 
+            <script>
+                document.write(new Date().getFullYear())
+            </script>
+            k3yg4n
+        </p>
+        <a href="https://github.com/k3yg4n" target="_blank">
+            <img class='icon' src="./images/githubIcon.png">
+        </a>
+    </footer>
 </body>
 
 </html>

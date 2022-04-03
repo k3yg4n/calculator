@@ -1,30 +1,124 @@
+@font-face{
+    font-family: Roboto;
+    src:url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap');
+}
+
+@font-face{
+    font-family: "calcFont";
+    src:url('./fonts/Calculator.ttf');
+}
+
 html{
-    background-color:rgb(71, 70, 70);
+    background-color:#F9F3DF;
+    width:100%;
+    height:100%;
+}
+
+body{
+    width:100%;
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    margin:0px;
+}
+
+#calcTop{
+    height:180px;
+}
+
+#calculator{
+    width:450px;
+    background-color:#D5ECC2;
+    border-radius: 8px;
+    border:solid black 4px;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
 }
 
 #display{
-    background:grey;
-    display:flex;
-    justify-content:end;
-
-    width:470px;
-    padding:10px;
-    margin-bottom:10px;
+    background-color:#EDFFEC;
+    border-radius: 8px;
+    border:solid black 2px;
+    margin:50px 0px;
+    width:80%;
+    font-size:75px;
+    text-align:end;
+    word-wrap:break-word;
+    font-family: 'calcFont', serif;
 }
 
-/* .numBtn,
-.opBtn{
-    width:25px;
-    height:auto;
-} */
-
-#clrBtn,
-#delBtn{
-    width:100px;
-}
 
 button{
-    width:60px;
-    height:60px;
-    font-size:30px;
+    border-radius: 8px;
+    font-family: 'Roboto', sans-serif; 
+    font-size:20px;
 }
+
+#actionBtns{
+    width:80%;
+    display:flex;
+    align-content:flex-start;
+    justify-content:space-between;
+    margin-bottom:20px;
+}
+
+.actionBtn{
+    width:48%;
+    height:50px;
+    font-size:30px;
+    background-color:#f89c9c;
+}
+
+#numAndOpBtns{
+    width:80%;
+    display:flex;
+    flex-wrap:wrap;
+    align-content:center;
+    justify-content:center;
+    margin-bottom:50px;
+}
+
+.numBtn,
+.opBtn,
+#eqBtn,
+#decBtn{
+    height:70px;
+    width:23%;
+    font-size:30px;
+    margin: 2px 2px;
+}
+
+
+.numBtn{
+    background-color:#B5DEFF;
+}
+
+.opBtn{
+    background-color:#AEE1E1;
+}
+
+#eqBtn,
+#decBtn{
+    background-color:#FCD1D1;
+}
+
+
+footer{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin-top:auto;
+
+    font-family: 'Roboto', sans-serif; 
+    font-size:20px;
+}
+
+.icon{
+    width:25px;
+    height:25px;
+    padding-left:10px;
+}
+

@@ -1,3 +1,33 @@
+///// MAIN ///// 
+
+// Initialize the display
+const display = document.querySelector('#display');
+const startDisplayVal = "0";
+let curDisplayVal = startDisplayVal;
+
+display.textContent = startDisplayVal;
+
+// Buttons
+const buttons = document.querySelectorAll('button');
+
+for(let btn of buttons){
+    btn.addEventListener('click',updateDisplay);
+}
+
+// Keyboard support
+document.addEventListener('keydown',keyUpdateDisplay);
+
+// Global variables
+let num1 = null;
+let num2 = null;
+let op = null;
+const divSymbol = "\u00f7";
+const multSymbol = "\u00d7"
+let opArray = ["+","-","\u00f7","\u00d7"];
+let validKeyArray = ['1','2','3','4','5','6','7','8','9','0','+','-','*','/','Backspace','Enter','=','.'];
+let validNumArray = ['1','2','3','4','5','6','7','8','9','0'];
+let validOpArray = ['+','-',divSymbol,multSymbol];
+
 // Operation Functions
 function add(a,b){
     return a+b;
@@ -214,35 +244,5 @@ function keyUpdateDisplay(e){
     display.textContent = textToDisplay;
 }
 
-
-///// MAIN ///// 
-
-// Initialize the display
-const display = document.querySelector('#display');
-const startDisplayVal = "0";
-let curDisplayVal = startDisplayVal;
-
-display.textContent = startDisplayVal;
-
-// Buttons
-const buttons = document.querySelectorAll('button');
-
-for(let btn of buttons){
-    btn.addEventListener('click',updateDisplay);
-}
-
-// Keyboard support
-document.addEventListener('keydown',keyUpdateDisplay);
-
-// Global variables
-let num1 = null;
-let num2 = null;
-let op = null;
-const divSymbol = "\u00f7";
-const multSymbol = "\u00d7"
-let opArray = ["+","-","\u00f7","\u00d7"];
-let validKeyArray = ['1','2','3','4','5','6','7','8','9','0','+','-','*','/','Backspace','Enter','=','.'];
-let validNumArray = ['1','2','3','4','5','6','7','8','9','0'];
-let validOpArray = ['+','-',divSymbol,multSymbol];
 
 
