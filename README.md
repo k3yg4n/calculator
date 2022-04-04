@@ -1,2 +1,2 @@
 # calculator
-A functioning calculator developed using HTML, CSS, and Javascript.
+A frog-themed calculator developed using HTML, CSS, and Javascript. Now with keyboard support!
